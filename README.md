@@ -1,59 +1,76 @@
-# Pokedex
+# PokeDex
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.0.
+Proyecto web desarrollado con Angular y Angular Material para la materia de Desarrollo de Software Frontend II.
 
-## Development server
+La aplicación está inspirada en la Pokédex clásica de Pokémon. Permite buscar Pokémon por nombre o número, visualizar su imagen e información básica y navegar entre ellos con los botones Anterior y Siguiente.
 
-To start a local development server, run:
+## Tecnologías utilizadas
 
-```bash
-ng serve
-```
+- Angular 22
+- Angular Material
+- TypeScript
+- HTML y CSS
+- Media Queries para el diseño responsivo
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Requisitos
 
-## Code scaffolding
+El proyecto fue desarrollado en Windows, utilizando las siguientes versiones:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Node.js: v22.22.3
+- npm: 10.9.8
+- Git: para clonar el repositorio.
 
-```bash
-ng generate component component-name
-```
+## Instalación y ejecución
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+1. Clonar el repositorio
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Abrir una terminal de PowerShell o la terminal de Visual Studio Code y ejecutar:
 
 ```bash
-ng build
+git clone https://github.com/Mictte/pokedex.git
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+2. Entrar a la carpeta del proyecto
 
-## Running unit tests
+cd pokedex
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+3. Instalar las dependencias
 
-```bash
-ng test
-```
+npm install
 
-## Running end-to-end tests
+Este comando instalará las dependencias de Angular y Angular Material necesarias para ejecutar el proyecto.
 
-For end-to-end (e2e) testing, run:
+4. Ejecutar la aplicación
 
-```bash
-ng e2e
-```
+npm start
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Una vez iniciado el servidor, abrir en el navegador:
 
-## Additional Resources
+http://localhost:4200/
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Para detener el servidor, presionar
+Ctrl + C
+en la terminal.
+
+## Funcionamiento actual
+
+Para el primer avance se utilizaron tres Pokémon de prueba: Bulbasaur, Ivysaur y Venusaur.
+
+Sus datos están definidos directamente en el proyecto para comprobar el funcionamiento del buscador, los componentes y los botones de navegación.
+
+Las imágenes se obtienen desde el repositorio de sprites de PokéAPI, por lo que se necesita conexión a internet para visualizarlas.
+
+En el siguiente avance se implementará un servicio Angular para consultar directamente PokéAPI.
+
+## Referencia del diseño
+
+La interfaz se desarrolló tomando como referencia una Pokédex publicada por melisaim en CodePen. Se adaptó su estilo visual a nuestro proyecto Angular, incorporando componentes propios y ajustes para pantallas de diferentes tamaños.
+
+Diseño de referencia: https://codepen.io/melisaim/pen/ZJKmMK
+
+## Integrantes
+
+- Castro Romero Roberto Daniel
+- Mondragón Nieto Yolanda Karina
+
+Proyecto realizado en equipo para la materia Desarrollo de Software Frontend II.
