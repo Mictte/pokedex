@@ -1,0 +1,16 @@
+<form class="search-form" (ngSubmit)="onSearch()">
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Nombre o número</mat-label>
+
+    <input
+      matInput
+      type="text"
+      name="pokemonQuery"
+      [(ngModel)]="query"
+      placeholder="Ej. Pikachu o 25"
+      autocomplete="off"
+    />
+  </mat-form-field>
+
+  <button mat-flat-button type="submit" [disabled]="!query.trim()">Buscar</button>
+</form>

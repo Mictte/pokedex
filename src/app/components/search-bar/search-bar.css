@@ -1,0 +1,29 @@
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+}
+
+.search-field {
+  width: 100%;
+}
+
+button {
+  width: 100%;
+  min-height: 40px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 480px) {
+  .search-form {
+    gap: 6px;
+  }
+
+  button {
+    min-height: 44px;
+  }
+}

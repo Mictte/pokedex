@@ -1,0 +1,19 @@
+<article class="pokemon-details">
+  <span class="pokemon-number"> #{{ pokemon.id.toString().padStart(3, '0') }} </span>
+
+  <h2>{{ pokemon.name }}</h2>
+
+  <div class="pokemon-types">
+    @for (type of pokemon.types; track type) {
+      <span class="pokemon-type">
+        {{ type }}
+      </span>
+    }
+  </div>
+
+  <div class="pokemon-stats">
+    <p><strong>Altura:</strong> {{ pokemon.height }} m</p>
+
+    <p><strong>Peso:</strong> {{ pokemon.weight }} kg</p>
+  </div>
+</article>

@@ -1,0 +1,415 @@
+
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 36px 20px;
+  background: #f2f0e8;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  font-family: Arial, sans-serif;
+}
+
+/* Encabezado */
+
+.page-heading {
+  text-align: center;
+}
+
+.page-heading h1 {
+  margin: 0;
+  font-size: 3rem;
+  color: #d9233e;
+  letter-spacing: 2px;
+}
+
+.page-heading p {
+  color: #5c5c5c;
+  margin-top: 6px;
+}
+
+/* Estructura general */
+
+.device {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 360px) 24px minmax(0, 320px);
+
+  width: 100%;
+  max-width: 704px;
+  filter: drop-shadow(8px 12px 8px #0003);
+}
+
+.device-panel {
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 22px;
+  background: #df1e3b;
+  border: 4px solid #850d24;
+}
+
+.left-panel {
+  border-radius: 20px 8px 8px 20px;
+}
+
+.right-panel {
+  border-radius: 8px 20px 20px 8px;
+}
+
+.device-hinge {
+  background: repeating-linear-gradient(
+    180deg,
+    #9a1029 0 14px,
+    #d52a47 14px 27px
+  );
+  border: 3px solid #750d25;
+  border-radius: 6px;
+}
+
+/* Luces superiores */
+
+.indicator-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.main-lens {
+  display: block;
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+
+  border: 7px solid white;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 25%,
+    #e0ffff,
+    #40d5ef 45%,
+    #00699d
+  );
+  box-shadow: 0 0 0 4px #74102a;
+}
+
+.mini-lights {
+  display: flex;
+  gap: 9px;
+  padding-top: 8px;
+}
+
+.light {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #761329;
+}
+
+.light-red {
+  background: #ff5555;
+}
+
+.light-yellow {
+  background: #ffe45c;
+}
+
+.light-green {
+  background: #68df72;
+}
+
+/* Pantalla principal */
+
+.screen-shell {
+  margin-top: 30px;
+  padding: 12px 14px 20px;
+  background: #dedede;
+  border: 4px solid #545454;
+  border-radius: 14px 14px 14px 35px;
+}
+
+.speaker-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.speaker-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #d8203c;
+}
+
+.screen-display {
+  min-height: 225px;
+  padding: 12px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #a7d8aa;
+  border: 4px solid #394247;
+  border-radius: 5px;
+}
+
+.screen-display img {
+  display: block;
+  width: 100%;
+  max-width: 190px;
+  height: 180px;
+  object-fit: contain;
+}
+
+.demo-label {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #315b3d;
+}
+
+/* Buscador */
+
+.search-area {
+  margin-top: 22px;
+  padding: 12px 12px 0;
+  border-radius: 10px;
+  background: #fff8f5;
+}
+
+/* Controles inferiores */
+
+.left-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 12px 8px;
+}
+
+.round-control {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #202533;
+  border: 3px solid #10141c;
+}
+
+.direction-pad {
+  width: 78px;
+  height: 78px;
+  position: relative;
+}
+
+.direction-pad::before,
+.direction-pad::after {
+  content: "";
+  position: absolute;
+  background: #26282c;
+  border-radius: 5px;
+}
+
+.direction-pad::before {
+  width: 78px;
+  height: 26px;
+  top: 26px;
+}
+
+.direction-pad::after {
+  width: 26px;
+  height: 78px;
+  left: 26px;
+}
+
+/* Panel derecho */
+
+.right-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.info-screen {
+  padding: 20px;
+  min-height: 245px;
+  box-sizing: border-box;
+
+  background: #c4dea6;
+  color: #263627;
+  border: 4px solid #3c4340;
+  border-radius: 9px;
+}
+
+.pokemon-number {
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.info-screen h2 {
+  margin: 10px 0 16px;
+  font-size: 1.7rem;
+}
+
+.info-screen p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 8px 0;
+}
+
+.screen-divider {
+  border-top: 1px solid #708e71;
+  margin: 18px 0;
+}
+
+.search-message {
+  overflow-wrap: anywhere;
+}
+
+/* Botones decorativos derechos */
+
+.control-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  margin-top: 22px;
+}
+
+.control-grid span {
+  height: 35px;
+  background: #36a8d0;
+  border: 2px solid #176989;
+  border-radius: 4px;
+}
+
+.device-label {
+  margin-top: 25px;
+  color: #fff0f0;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+}
+
+.page-footer {
+  color: #777;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* Diseño responsivo */
+
+@media (max-width: 720px) {
+  .device {
+    max-width: 390px;
+    grid-template-columns: 1fr;
+  }
+
+  .left-panel {
+    border-radius: 20px 20px 5px 5px;
+  }
+
+  .right-panel {
+    border-radius: 5px 5px 20px 20px;
+  }
+
+  .device-hinge {
+    height: 14px;
+    margin: 0 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .page {
+    padding: 18px 10px 30px;
+  }
+
+  .page-heading h1 {
+    font-size: 2.2rem;
+  }
+
+  .device-panel {
+    padding: 16px;
+  }
+
+  .screen-display {
+    min-height: 190px;
+  }
+
+  .screen-display img {
+    height: 150px;
+  }
+}
+
+
+
+/* Navegacion entre Pokemon */
+
+.navigation-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.nav-button {
+  background: #242a33;
+  color: white;
+  border: 2px solid #14181f;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.nav-button:hover {
+  background: #384458;
+}
+
+.nav-button:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.pokemon-counter {
+  color: white;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+/* Mensaje de busqueda */
+
+.error-message {
+  margin-top: 14px;
+  padding: 10px;
+  border-radius: 6px;
+  color: #802020;
+  background: #ffe2e2;
+  font-size: 0.85rem;
+}
+
+/* Ajustes para dispositivos pequeños */
+
+@media (max-width: 420px) {
+  .navigation-controls {
+    gap: 6px;
+  }
+
+  .nav-button {
+    padding: 10px 8px;
+    font-size: 0.75rem;
+  }
+}
