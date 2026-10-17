@@ -1,9 +1,10 @@
-
-import { Component, computed, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { SearchBar } from './components/search-bar/search-bar';
 import { PokemonCard } from './components/pokemon-card/pokemon-card';
 import { Pokemon } from './models/pokemon.model';
+import { PokemonService } from './services/pokemon';
 
 @Component({
   selector: 'app-root',
@@ -14,75 +15,65 @@ import { Pokemon } from './models/pokemon.model';
 export class App {
   protected readonly title = signal('PokeDex');
 
-  // Datos temporales para el primer avance HardCore
-  protected readonly pokemons: Pokemon[] = [
-    {
-      id: 1,
-      name: 'Bulbasaur',
-      types: ['Planta', 'Veneno'],
-      height: 0.7,
-      weight: 6.9,
-      imageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png'
-    },
-    {
-      id: 2,
-      name: 'Ivysaur',
-      types: ['Planta', 'Veneno'],
-      height: 1,
-      weight: 13,
-      imageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png'
-    },
-    {
-      id: 3,
-      name: 'Venusaur',
-      types: ['Planta', 'Veneno'],
-      height: 2,
-      weight: 100,
-      imageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png'
-    }
-  ];
+  private readonly pokemonService = inject(PokemonService);
 
-  protected readonly currentIndex = signal(0);
+  protected readonly selectedPokemon = signal<Pokemon | null>(null);
+  protected readonly isLoading = signal(false);
   protected readonly errorMessage = signal('');
 
-  protected readonly selectedPokemon = computed(
-    () => this.pokemons[this.currentIndex()]
-  );
+  constructor() {
+    this.loadPokemon(1);
+  }
 
-  // Buscar por nombre o numero
+  // Consultar un Pokemon desde PokeAPI
+  private loadPokemon(nameOrId: string | number): void {
+    this.isLoading.set(true);
+    this.errorMessage.set('');
+    this.selectedPokemon.set(null);
+
+    this.pokemonService.getPokemon(nameOrId).subscribe({
+      next: (pokemon) => {
+        this.selectedPokemon.set(pokemon);
+        this.isLoading.set(false);
+      },
+      error: (error: HttpErrorResponse) => {
+        this.selectedPokemon.set(null);
+
+        if (error.status === 404) {
+          this.errorMessage.set(
+            'No se encontró el Pokémon. Verifica el nombre o número.'
+          );
+        } else {
+          this.errorMessage.set(
+            'No se pudo consultar PokéAPI. Revisa tu conexión.'
+          );
+        }
+
+        this.isLoading.set(false);
+      }
+    });
+  }
+
+  // Buscar por nombre o nmero
   onPokemonSearch(value: string): void {
-    const query = value.trim().toLowerCase();
-
-    const index = this.pokemons.findIndex(
-      pokemon =>
-        pokemon.name.toLowerCase() === query ||
-        pokemon.id === Number(query)
-    );
-
-    if (index === -1) {
-      this.errorMessage.set(
-        'Pokémon no disponible en este prototipo.'
-      );
-      return;
-    }
-
-    this.currentIndex.set(index);
-    this.errorMessage.set('');
+    this.loadPokemon(value);
   }
 
-
+  // Pokemon anterior
   previousPokemon(): void {
-    this.currentIndex.update(index =>
-      (index - 1 + this.pokemons.length) % this.pokemons.length
-    );
-    this.errorMessage.set('');
+    const pokemon = this.selectedPokemon();
+
+    if (pokemon && pokemon.id > 1 && !this.isLoading()) {
+      this.loadPokemon(pokemon.id - 1);
+    }
   }
 
-
+  // Pokemon siguiente
   nextPokemon(): void {
-    this.currentIndex.update(index =>
-      (index + 1) % this.pokemons.length
-    );
-    this.errorMessage.set('');
+    const pokemon = this.selectedPokemon();
+
+    if (pokemon && !this.isLoading()) {
+      this.loadPokemon(pokemon.id + 1);
+    }
   }
 }

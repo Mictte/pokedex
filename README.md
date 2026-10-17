@@ -68,6 +68,18 @@ La interfaz se desarrolló tomando como referencia una Pokédex publicada por me
 
 Diseño de referencia: https://codepen.io/melisaim/pen/ZJKmMK
 
+## 6.2 Avance 2: Bitácora – Progreso funcional del proyecto
+
+## Funcionamiento actual
+
+En el segundo avance se integró PokéAPI mediante un servicio de Angular, utilizando HttpClient para realizar las consultas.
+
+La aplicación permite buscar Pokémon por nombre o número, mostrando su imagen, tipos, altura y peso. También cuenta con botones para navegar entre Pokémon y mensajes de error cuando no se encuentra el que se está buscando.
+
+Los datos se obtienen directamente de PokéAPI, por lo que es necesario contar con conexión a internet para utilizar la aplicación.
+
+La interfaz conserva el diseño responsivo del primer avance y se adapta a computadoras y dispositivos móviles.
+
 ## Integrantes
 
 - Castro Romero Roberto Daniel

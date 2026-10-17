@@ -7,7 +7,6 @@
   <section class="device" aria-label="Dispositivo Pokédex">
     <!-- Panel izquierdo -->
     <div class="device-panel left-panel">
-      <!-- Luces -->
       <div class="indicator-row" aria-hidden="true">
         <span class="main-lens"></span>
 
@@ -26,23 +25,27 @@
         </div>
 
         <div class="screen-display">
-          <img
-            [src]="selectedPokemon().imageUrl"
-            [alt]="'Ilustración de ' + selectedPokemon().name"
-          />
+          @if (isLoading()) {
+            <p role="status">Buscando Pokémon...</p>
+          } @else if (errorMessage()) {
+            <p class="error-message" role="alert">Pokémon no encontrado</p>
+          } @else if (selectedPokemon(); as pokemon) {
+            <img [src]="pokemon.imageUrl" [alt]="'Ilustración de ' + pokemon.name" />
 
-          <span class="demo-label">
-            #{{ selectedPokemon().id.toString().padStart(3, '0') }} - {{ selectedPokemon().name }}
-          </span>
+            <span class="demo-label">
+              #{{ pokemon.id.toString().padStart(3, '0') }} - {{ pokemon.name }}
+            </span>
+          } @else {
+            <p>Esperando información...</p>
+          }
         </div>
       </div>
 
-      <!-- Componente buscador que utiliza angular material -->
+      <!-- Buscador -->
       <div class="search-area">
         <app-search-bar (pokemonSearch)="onPokemonSearch($event)" />
       </div>
 
-      <!-- Controles decorativos -->
       <div class="left-controls" aria-hidden="true">
         <span class="round-control"></span>
         <span class="direction-pad"></span>
@@ -59,27 +62,46 @@
         <span>MODELO 01</span>
       </div>
 
-      <!-- Componente de informacion -->
+      <!-- Informacion del Pokemon -->
       <div class="info-screen">
-        <app-pokemon-card [pokemon]="selectedPokemon()" />
-
-        @if (errorMessage()) {
+        @if (isLoading()) {
+          <p class="loading-message" role="status">Cargando información...</p>
+        } @else if (errorMessage()) {
           <p class="error-message" role="alert">
             {{ errorMessage() }}
           </p>
+        } @else if (selectedPokemon(); as pokemon) {
+          <app-pokemon-card [pokemon]="pokemon" />
         }
       </div>
 
-      <!-- Botones de navegacion -->
+      <!-- Navegacion -->
       <div class="navigation-controls">
-        <button type="button" class="nav-button" (click)="previousPokemon()">Anterior</button>
+        <button
+          type="button"
+          class="nav-button"
+          (click)="previousPokemon()"
+          [disabled]="isLoading() || !selectedPokemon() || selectedPokemon()!.id <= 1"
+        >
+          Anterior
+        </button>
 
-        <span class="pokemon-counter"> {{ currentIndex() + 1 }} / {{ pokemons.length }} </span>
+        <span class="pokemon-counter">
+          @if (selectedPokemon(); as pokemon) {
+            #{{ pokemon.id.toString().padStart(3, '0') }}
+          }
+        </span>
 
-        <button type="button" class="nav-button" (click)="nextPokemon()">Siguiente</button>
+        <button
+          type="button"
+          class="nav-button"
+          (click)="nextPokemon()"
+          [disabled]="isLoading() || !selectedPokemon()"
+        >
+          Siguiente
+        </button>
       </div>
 
-      <!-- Controles decorativos -->
       <div class="control-grid" aria-hidden="true">
         <span></span>
         <span></span>
@@ -88,7 +110,7 @@
         <span></span>
       </div>
 
-      <div class="device-label">POKEDEX / PROTOTIPO V1</div>
+      <div class="device-label">POKEDEX / PROTOTIPO V2</div>
     </div>
   </section>
 

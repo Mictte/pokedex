@@ -413,3 +413,20 @@
     font-size: 0.75rem;
   }
 }
+
+
+/* Mensajes de estado */
+
+.loading-message {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #315e3b;
+  font-weight: 600;
+}
+
+/* Botones deshabilitados */
+
+.nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
